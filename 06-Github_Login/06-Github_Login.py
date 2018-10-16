@@ -13,7 +13,7 @@ class Login(object):
         self.login_url = 'https://github.com/login'
         self.post_url = 'https://github.com/session'
         self.logined_url = 'https://github.com/settings/profile'
-        self.session = requests.Session()   # 维持会话, 自动处理Cookies
+        self.session = requests.Session()   # 维持会话，处理Cookies, 使得我们不同担心Cookies的问题
 
     def token(self):
         response = self.session.get(self.login_url, headers=self.headers)
