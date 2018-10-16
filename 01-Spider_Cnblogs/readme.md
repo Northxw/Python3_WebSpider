@@ -21,7 +21,9 @@
 + 新闻页面：https://www.cnblogs.com/news/， 翻页规律同上。
 
 ### 其他
-+ a打包用到的是pyinstaller第三方库，执行pip install pyinstaller进行安装，pyinstaller两个参数解释如下：i.<font color="#dd0000"> -F：</font>指定打包后只生成一个exe格式的文件； ii.	<font color="#dd0000"> –i：</font>改变生成程序的icon图标（图片必须是ico格式）
++ 打包用到的是pyinstaller第三方库，执行pip install pyinstaller 进行安装，pyinstaller两个参数解释如下：
+	- <font color="#dd0000"> -F：</font>指定打包后只生成一个exe格式的文件
+	- <font color="#dd0000"> –i：</font>改变生成程序的icon图标（图片必须是ico格式）
 + 打包命令：<font color="#dd0000">pyinstaller –F –i New.ico New.py</font>
 + 为了方便打包为exe程序，将源代码复制并重命名为了New.py，icon图标名称也是New.ico
 + 生成的 .exe 程序包含在dist文件夹下，点击运行的结果会直接创建在该目录下（三个文本文件）
