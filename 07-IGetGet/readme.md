@@ -3,8 +3,8 @@
 
 ### 准备工作
 + 确保正确安装 mitmproxy 和 mitmdump.[参考方法 !](https://yq.aliyun.com/articles/603782?utm_content=m_1000003864)
-+ 手机和PC机处于同段网络（同一个局域网下），并确定配置好了 mitmproxy的CA证书.
-+ 正确安装并启动MongoDB服务，并安装PyMongo库
++ 手机和PC机处于同一个局域网下，并确保在手机上配置好了mitmproxy的CA证书.
++ 正确安装并启动MongoDB服务，并安装PyMongo库（pip install pymong)
 
 ### 抓取分析
 + 寻找电子书页面的URL和返回内容, 编写脚本并命名为scripts.py、如下：
