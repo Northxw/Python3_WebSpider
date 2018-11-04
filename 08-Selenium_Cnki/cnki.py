@@ -114,6 +114,7 @@ class Login_Cnki(object):
         code.send_keys(self.code)           # 输入验证码
         time.sleep(2)
         register.click()  # 注册
+        time.sleep(3)
         print('注册成功!')
 
 if __name__ == '__main__':
