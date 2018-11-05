@@ -88,10 +88,10 @@ class Login_Cnki(object):
         :param image: 验证码的Image对象
         :return: 识别结果
         """
-        bytes_array = BytesIO()
-        image.save(bytes_array, format='PNG')
+        bytes_array = BytesIO() # 创建一个BytesIO类型的字节数组
+        image.save(bytes_array, format='PNG')   # 写入验证码的二进制流
         # 识别验证码
-        captcha_result = self.chaojiying.PostPic(bytes_array.getvalue(), CHAOJIYING_KIND)
+        captcha_result = self.chaojiying.PostPic(bytes_array.getvalue(), CHAOJIYING_KIND)   # 发送至超级鹰识别验证
         result = captcha_result.get('pic_str')  # 获取识别结果
         return result
 
@@ -101,8 +101,8 @@ class Login_Cnki(object):
         :return:
         """
         print('正在获取图形验证码...')
-        #_, res_2 = handle_code(self.get_geetest_image())        # 返回结果为两个,可任意选取一种结果(你认为识别精度比较高的那一个)
-        #self.code = _   # 赋值任意一个code
+        # _, res_2 = handle_code(self.get_geetest_image())        # 返回结果为两个,可任意选取一种结果(你认为识别精度比较高的那一个)
+        # self.code = _   # 赋值任意一个code
         self.code = self.get_result(self.get_geetest_image())
         username, password, email, code, register = self.get()  # 获取节点
         username.send_keys(self.username)   # 输入用户名
