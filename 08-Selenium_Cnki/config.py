@@ -14,4 +14,4 @@ URL = 'http://my.cnki.net/elibregister/commonRegister.aspx'
 CHAIJIYING_USERNAME = 'Northxw'
 CHAOJIYING_PASSWORD = '**********'
 CHAIJIYING_SOFT_ID = ********
-CHAOJIYING_KIND = 1902
+CHAOJIYING_KIND = 1902  # 1902代表常见四位英文和数字组成的验证码。验证码类型可以在打码平台的题分表上查看
