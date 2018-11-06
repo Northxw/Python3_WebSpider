@@ -9,8 +9,9 @@ from time import sleep
 from PIL import Image
 from io import BytesIO
 
+# B站账号和密码
 EMAIL = 'northxw@163.com'
-PASSWORD = 'wxf201678...'
+PASSWORD = '**********'
 
 BORDER = 10
 INIT_LEFT = 51
