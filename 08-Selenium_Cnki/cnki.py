@@ -8,8 +8,8 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 from chaojiying import Chaojiying
-from config import *
-from handle_code import handle_code
+from utils.config import *
+from utils.handle import handle_code
 import time
 
 class Login_Cnki(object):
