@@ -83,8 +83,7 @@ class CrackGeetest_b(object):
         left, top, right, bottom = self.get_position()  # 获取坐标值
         print('验证码位置：', left, top, right, bottom)
         screenshot = self.get_screenshot(name_)      # 获取网页截图的Image对象
-        captcha = screenshot.crop((left, top, right, bottom))   # 裁剪极验原图
-        # captcha = self.image_convert(captcha)           # 二值化验证码对象
+        captcha = screenshot.crop((left, top, right, bottom))   # 裁剪极验验证码
         captcha.save(name)  # 存储照片
         return captcha
 
