@@ -8,8 +8,8 @@ import os
 
 def response(flow):
     """
-    抓取抖音标题、APP视频链接、作者、抖音ID、发布时间、获赞数、评论和转发数等信息, 并将数据保存至MongoDB.
-    :return:
+    抓取抖音标题、APP视频链接、作者、抖音ID、发布时间、获赞数、评论和转发数等信息, 并将结果保存为JSON格式.
+    :return: None
     """
     url = 'https://api.amemv.com/'   # 获取抖音短视频的URL接口
     url_ = 'https://aweme.snssdk.com/'
