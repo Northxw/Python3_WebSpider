@@ -1,6 +1,6 @@
 # -*- coding:utf-8 -*-
 
-# APPIUM服务器
+# Appium 服务器
 DRIVER_SERVER = 'http://localhost:4723/wd/hub'
 
 # 启动参数：设备类型、名称、APP包名、入口类型
