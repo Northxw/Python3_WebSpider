@@ -13,11 +13,6 @@ APP_ACTIVITY = 'com.baiji.jianshu.MainActivity'
 USER_PHONENUMBER = '********'
 PASSWORD = '********'
 
-# MONGODB数据库配置
-MONGO_URL = 'localhost'
-MONGO_DB = '17-Jianshu'
-MONGO_COLLECTION = 'content'
-
 # 等待时间
 TIMEOUT = 100
 
