@@ -61,8 +61,8 @@ class JianshuAction(object):
         上滑页面、触发请求
         :return:None
         """
-        # 由于推荐页面的文章数目很多,当获取到1000条文章的具体信息之后，程序终止。
-        count = 100
+        # 由于推荐页面的文章数目很多,当前仅获取部分文章信息。
+        count = 1000    # 可灵活配置该参数
         while count > 0:
             # 模拟拖动
             self.driver.swipe(FLICK_START_X, FLICK_START_Y + FLICK_DISTANCE, FLICK_START_X, FLICK_START_Y)
