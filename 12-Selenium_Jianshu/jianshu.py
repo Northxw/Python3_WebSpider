@@ -10,7 +10,7 @@ from time import sleep
 from PIL import Image
 from io import BytesIO
 from chaojiying import Chaojiying
-from Jianshu.utils.config import *
+from .utils.config import *
 
 class Login_Jianshu(object):
     def __init__(self):
