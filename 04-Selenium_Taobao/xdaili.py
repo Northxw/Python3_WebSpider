@@ -12,9 +12,9 @@ class Xdaili(object):
         # 代理服务器
         self.ip = "forward.xdaili.cn"
         self.port = '80'
-        # 订单号和个人密钥
-        self.orderno = "ZF201810230685eMVeQa"
-        self.secert = "ddde303a69274c989a308dc86e5e7a51"
+        # 订单号和个人密钥(可在讯代理官网购买)
+        self.orderno = "ZF2018***********"
+        self.secert = "**********************************"
 
     def auth(self):
         """
