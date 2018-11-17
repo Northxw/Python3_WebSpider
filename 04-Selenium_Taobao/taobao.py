@@ -1,5 +1,10 @@
 # -*- coding:utf-8 -*-
 
+"""
+Updated at 15:39 on Nov 17,2018
+@title: Selenium + Chrome + Xdaili完成淘宝商品数据的抓取
+@author: Northxw
+"""
 from selenium import webdriver
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.by import By
