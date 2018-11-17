@@ -15,7 +15,7 @@ from urllib.parse import quote
 from pyquery import PyQuery as pq
 import pymongo
 import time
-from Taobao.utils.config import *
+from .utils.config import *
 from xdaili import Xdaili
 
 class Products(object):
