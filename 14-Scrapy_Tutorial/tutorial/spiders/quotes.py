@@ -18,7 +18,7 @@ class QuotesSpider(scrapy.Spider):
             item['tags'] = quote.css('.tags .tag::text').extract()
             yield item
         try:
-            next = response.css('.pager .next a:attr(href)').extract_first()
+            next = response.css('.pager .next a:attr("href")').extract_first()
         except Exception as e:
             _ = e   # 接收异常
             next = None
