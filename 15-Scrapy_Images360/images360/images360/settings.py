@@ -24,7 +24,7 @@ MONGO_DB = 'images360'
 MYSQL_HOST = 'localhost'
 MYSQL_DATABASE = 'images360'
 MYSQL_USER = 'root'
-MYSQL_PASSWORD = '0513'
+MYSQL_PASSWORD = '0000'
 MYSQL_PORT = 3306
 
 # Image Path
