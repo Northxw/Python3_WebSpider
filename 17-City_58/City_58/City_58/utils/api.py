@@ -23,5 +23,6 @@ def get_ip_port(url):
     return agent
 
 if __name__ == '__main__':
-    # 代理ip
-    agent = get_ip_port(url='http://api.xdaili.cn/xdaili-api//greatRecharge/getGreatIp?spiderId=a31f8cd494e343d69b51b303859ac446&orderno=YZ2018112517118ojIuo&returnType=2&count=1')
+    # 测试 - 这里我购买了讯代理的"优质代理"，通过API生成提取链接来提取ip. 测试有效！
+    url = ''
+    agent = get_ip_port(url=url)
