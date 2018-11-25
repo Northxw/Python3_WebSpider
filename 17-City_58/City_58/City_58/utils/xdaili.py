@@ -13,8 +13,9 @@ from lxml import etree
 
 class Xdaili(object):
     def __init__(self):
-        self.orderno = 'ZF201810230685eMVeQa'
-        self.secret = 'ddde303a69274c989a308dc86e5e7a51'
+        # 请将此处的订单号和个人密钥修改为你自己的.
+        self.orderno = 'ZF201812********************'
+        self.secret = 'ddde303a6*******************'
         self.ip = "forward.xdaili.cn"
         self.port = '80'
         self.ip_port = self.ip + ":" + self.port
