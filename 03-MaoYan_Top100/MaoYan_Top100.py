@@ -1,6 +1,6 @@
 # -*- coding:utf-8 -*-
 """
-Created at 15:49 on Sep 24,2018
+Updated at 14:33 on March 11,2019
 @title: Spider Maoyan Top100
 @author: Northxw
 """
@@ -9,13 +9,23 @@ import requests
 import re
 import json
 from requests.exceptions import RequestException
+from pymongo import MongoClient
 import time
 
+# 创建数据库连接
+client = MongoClient('mongodb://localhost:27017/')
+db = client.maoyan
+collection = db.rank
+
 def get_one_page(url):
+    """
+    获取每页的网页源代码
+    :param url: 请求链接
+    :return: 网页的文本内容
+    """
     try:
         headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36',
-            'Cookie': '__mta=246739515.1536592649404.1537714713955.1537771862699.20; uuid_n_v=v1; uuid=A14181E0B50C11E8931C43FA953517EDB7F927FACF434352868294D23195FD68; _lxsdk_cuid=165c40f1bb3c8-0cd1f04a8c6994-5701631-100200-165c40f1bb31d; _lxsdk=A14181E0B50C11E8931C43FA953517EDB7F927FACF434352868294D23195FD68; _csrf=052f202ba24c2eae0c8782b859666f0bef5730a61c8778468ac00cc6a85046ec; _lxsdk_s=1660a5878c9-d20-188-29d%7C%7C2',
         }
         response = requests.get(url=url, headers=headers)
         if response.status_code == 200:
@@ -25,6 +35,11 @@ def get_one_page(url):
         return None
 
 def parse_one_page(html):
+    """
+    使用正则表达式解析网页数据
+    :param html: 网页的文本内容
+    :return: 字典
+    """
     pattern = re.compile(
         r'<dd>.*?board-index.*?>(.*?)</i>.*?data-src="(.*?)".*?name.*?a.*?>(.*?)</a>.*?star.*?>(.*?)</p>.'
         r'*?releasetime.*?>(.*?)</p>.*?integer.*?>(.*?)</i>.*?fraction.*?>(.*?)</i>.*?</dd>',
@@ -45,11 +60,20 @@ def write_to_file(content):
     with open('result.txt', 'a', encoding='utf-8') as f:
         f.write(json.dumps(content, ensure_ascii=False) + '\n')
 
+def save_to_mongo(item):
+    """
+    将数据存储到MongoDB
+    :param dict: 字典类型的数据
+    :return: None
+    """
+    collection.insert(item)
+
 def main(offset):
     url = 'http://maoyan.com/board/4?offset={}'.format(str(offset))
     html = get_one_page(url)
     for item in parse_one_page(html):
         write_to_file(item)
+        save_to_mongo(item)
 
 if __name__ == '__main__':
     for i in range(10):
