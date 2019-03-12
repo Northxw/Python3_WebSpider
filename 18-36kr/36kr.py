@@ -23,7 +23,7 @@ def connect_db():
     连接Mysql数据库
     :return: db
     """
-    db = pymysql.connect(host='localhost', user='root', password='0513', port=3306, db='36kr')
+    db = pymysql.connect(host='localhost', user='root', password='******', port=3306, db='36kr')
     # print('数据库连接成功!')
     return db
 
@@ -91,6 +91,7 @@ def save_to_mysql(datas):
    :param item: 获取的单页有效数据
     :return: None
     """
+    # 连接数据库
     db = connect_db()
     # 获得Mysql操作指针
     cursor = db.cursor()
