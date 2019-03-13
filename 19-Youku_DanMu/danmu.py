@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 """
-Created at at March 13,2019
+Created at 22:08 at March 13,2019
 @title: 爬取优酷《我不是药神仙》弹幕数据并制作词云
 @author: Northxw
 """
