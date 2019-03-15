@@ -42,5 +42,8 @@ pip3 install pymysql
 **6. 登录限制**
 > 不要频繁使用Selenium, 否则会出现点触式验证。当然，完全可以破解。但是，网易相对友好，短时间过后便可恢复正常访问，也不会ban IP。
 
+## Other
+&emsp; 代码注释部分为保留功能：获取所有邮件的有效信息(发件人、收件时间、邮件内容概要)，并保存至数据库。由于节点采集遇到问题，所以暂时注释保留。
+
 ## Demo
 ![demo](https://github.com/Northxw/Python3_WebSpider/blob/master/20-Selenium_163/require/demo.gif)
