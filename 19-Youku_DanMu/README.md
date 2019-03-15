@@ -3,8 +3,10 @@
 
 ## Explain
 &emsp; 首先，播放影片并打开Chrome开发者工具,选择Network。逐步拖动进度条并观察本地与服务器的请求规律，如图：
+![danmu_request_url_png](https://github.com/Northxw/Python3_WebSpider/blob/master/19-Youku_DanMu/utils/require/danmu_json.png)
 
-然后，确定弹幕数据来自JS实时加载而非XHR。需要注意的是，弹幕的请求数据不是规范的JSON格式。如图：
+&emsp; 然后，确定弹幕数据来自JS实时加载而非XHR。需要注意的是，弹幕的请求数据不是规范的JSON格式。如图：    
+![danmu_json_content](https://github.com/Northxw/Python3_WebSpider/blob/master/19-Youku_DanMu/utils/require/danmu_content.png)
 
 ## Other
 1. 请求链接的最后一个参数类似时间戳，去掉后不会影响数据的获取。      
