@@ -17,8 +17,12 @@ pip3 install selenium==2.48.0
 **1.不要频繁运行程序模拟登录**
 > 频繁模拟登录并识别验证码后，会出现验证码却来越模糊到难以识别，并且识别后点击"确认"按钮无法登录（或者说登录失败）的情况。如图所示的位置失效：
 
+![sure_button](https://github.com/Northxw/Python3_WebSpider/blob/master/12-Crack_Jianshu/require/code_demo.png)
+
 **2.超级鹰**
-> [超级鹰打码平台](http://www.chaojiying.com/)打码效率可以达到90%以上。在平台上注册绑定微信后会赠送1000积分，基本够用了。如图是我的积分情况：
+> [超级鹰打码平台](http://www.chaojiying.com/) 打码效率可以达到90%以上。在平台上注册绑定微信后会赠送1000积分，基本够用了。如图是我的积分情况：
+
+![jifen](https://github.com/Northxw/Python3_WebSpider/blob/master/12-Crack_Jianshu/require/chaojiying.png)
 
 **3.超级鹰软件ID和验证码类型**
 > 软件ID相当于发给你身份证，每次打码都必须携带；验证码类型需要你去 [平台](http://www.chaojiying.com/price.html#table-item5) 确认。例如该项目的简书
