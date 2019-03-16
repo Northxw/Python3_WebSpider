@@ -1,8 +1,8 @@
 ## Project name
 &emsp; 模拟登录网易163邮箱并发送SOS邮件。
 
-## Purpose
-&emsp; Selenium打开站点默认父级Frame, 获取不到子页面的节点。项目可以训练对iframe的处理。
+## Sort
+&emsp; **iframe子网页处理** - 通过网易163邮箱的多iframe特点训练对子页面的处理。
 
 ## Install
 &emsp; 基于自动化测试工具Selenium的模拟登录并发送SOS邮件，需要安装的库：
