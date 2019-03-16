@@ -1,5 +1,11 @@
 # -*- coding:utf-8 -*-
 
+"""
+Updated at 17:46 at March 16, 2019
+@title: 破解B站滑动验证码并实现模拟登录
+@author: Northxw
+"""
+
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
@@ -220,7 +226,7 @@ class Crack_bb(object):
             EC.text_to_be_present_in_element((By.CLASS_NAME, 't'), '验证成功'))
         print(success)
 
-        # 失败后重试
+        # 失败重试
         if not success:
             self.crack_login()
 
