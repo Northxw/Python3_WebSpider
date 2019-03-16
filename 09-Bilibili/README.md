@@ -19,8 +19,9 @@ img = self.wait.until(EC.presence_of_element_located((By.CLASS_NAME, 'gt_box')))
 ```
 
 **2.获取坐标值**
-> 获取的坐标值分别是左上角和右下角, 而前端页面的坐标原点在屏幕左上角并且元素节点一般都是相对位置，所以坐标值部分需要好好理解。比如B站登录界面包含"登录"的
-div节点其父节点是id=" login-app"的div,如图：
+> 获取的坐标值分别是左上角和右下角, 而前端页面的坐标原点在屏幕左上角并且元素节点一般都是相对位置，所以坐标值部分需要好好理解。比如B站登录界面包含"登录"的div节点其父节点是id=" login-app"的div,如图：
+
+![location_demo](https://github.com/Northxw/Python3_WebSpider/blob/master/09-Bilibili/require/demo_location.png)
 
 **3.缺口偏移量**
 > 通过遍历图片的每个坐标点获取两张图片对应像素点的RGB，如果RGB差距在阈值范围内就认为相同，继续比对下一像素点。如果超过阈值，则说明像素点不同，当前位置
