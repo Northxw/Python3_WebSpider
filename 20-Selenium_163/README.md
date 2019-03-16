@@ -5,8 +5,6 @@
 &emsp; **iframe子网页处理** - 通过网易163邮箱的多iframe特点训练对子页面的处理。
 
 ## Install
-&emsp; 基于自动化测试工具Selenium的模拟登录并发送SOS邮件，需要安装的库：
-
 **1. Selenium** - 建议使用低版本的Python-Selenium库，因为高版本在Chrome中不支持。
 ```
 pip3 install selenium==2.48.0
