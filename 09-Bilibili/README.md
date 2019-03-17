@@ -1,17 +1,17 @@
-## Project name
+# Project name
 &emsp; 使用Selenium模拟登录B站并破解滑动验证码。
 
-## Sort
+# Sort
 &emsp; **验证码识别** - 破解滑动验证码
 
-## Install
+# Install
 **1. Selenium** - 建议使用低版本的Python-Selenium库，因为高版本在Chrome中不支持。
 ```
 pip3 install selenium==2.48.0
 ```
 **2. chromedriver.exe** - download_addr：http://npm.taobao.org/mirrors/chromedriver/, 版本要匹配。
 
-## Process analysis
+# Process analysis
 **1.验证码节点**
 > B站验证码只要鼠标悬浮滑块就会出现, 当验证码出现后定位节点即可。过程比较繁琐，直接贴出来：
 ```
@@ -69,8 +69,8 @@ img = self.wait.until(EC.presence_of_element_located((By.CLASS_NAME, 'gt_box')))
 **5.点按滑块呼出验证码**
 > 点按滑块后, 两到三秒后验证码会自动隐藏, 所以不要添加延时，直接获取。
 
-## Other
+# Other
 &emsp; 代码已更新, 正常情况下的破解率应该在50%以上, 主要看服务器怎么判定边界(像素差)。
 
-## Demo
+# Demo
 ![demo](https://github.com/Northxw/Python3_WebSpider/blob/master/09-Bilibili/require/demo.gif)
