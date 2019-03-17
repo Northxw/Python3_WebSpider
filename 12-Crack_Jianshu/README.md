@@ -15,7 +15,7 @@ pip3 install selenium==2.48.0
 
 # Process analysis
 **1.不要频繁运行程序模拟登录**
-> 频繁模拟登录并识别验证码后，会出现验证码却来越模糊到难以识别，并且识别后点击"确认"按钮无法登录（或者说登录失败）的情况。如图所示的位置失效：
+> 频繁模拟登录并识别验证码后，会出现验证码却来越模糊到难以识别，并且识别后点击"确认"按钮无法登录（或者说登录按键失效的）的情况。如图所示的位置失效：
 
 ![sure_button](https://github.com/Northxw/Python3_WebSpider/blob/master/12-Crack_Jianshu/require/code_demo.png)
 
@@ -25,7 +25,7 @@ pip3 install selenium==2.48.0
 ![jifen](https://github.com/Northxw/Python3_WebSpider/blob/master/12-Crack_Jianshu/require/chaojiying.png)
 
 **3.超级鹰软件ID和验证码类型**
-> 软件ID相当于发给你身份证，每次打码都必须携带；验证码类型需要你去 [平台](http://www.chaojiying.com/price.html#table-item5) 确认。例如该项目的简书
+> 软件ID相当于工作牌(或护照)，每次打码都必须携带；验证码类型需要你去 [平台](http://www.chaojiying.com/price.html#table-item5) 确认。例如该项目的简书
 验证码类型属于**9004	坐标多选,返回1~4个坐标**。
 
 **4.识别思路(简要)**
