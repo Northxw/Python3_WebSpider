@@ -5,11 +5,11 @@
 &emsp;  **验证码识别** - 点触验证码
 
 ## Demand
-**1. Selenium** - 建议使用低版本的Python-Selenium库，因为高版本在Chrome中不支持。
+**1. Selenium**
 ```
 pip3 install selenium==2.48.0
 ```
-**2. chromedriver.exe** - download_addr：http://npm.taobao.org/mirrors/chromedriver/, 版本要匹配。  
+**2. chromedriver.exe** - download_addr：http://npm.taobao.org/mirrors/chromedriver/  
 
 **3. Chaojiying_Python.rar** - download_addr：http://www.chaojiying.com/download/Chaojiying_Python.rar
 
