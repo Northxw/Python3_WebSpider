@@ -25,11 +25,10 @@ pip3 install selenium==2.48.0
 ![jifen](https://github.com/Northxw/Python3_WebSpider/blob/master/12-Crack_Jianshu/require/chaojiying.png)
 
 **3.超级鹰软件ID和验证码类型**
-> 软件ID相当于工作牌(或护照)，每次打码都必须携带；验证码类型需要你去 [平台](http://www.chaojiying.com/price.html#table-item5) 确认。例如该项目的简书
-验证码类型属于**9004	坐标多选,返回1~4个坐标**。
+> 软件ID相当于工作牌(或护照)，每次打码都必须携带；验证码类型需要你去 [平台](http://www.chaojiying.com/price.html#table-item5) 确认。例如该项目的验证码类型属于**9004	坐标多选,返回1~4个坐标**。
 
 **4.识别思路(简要)**
-> 首先，获取验证码位置；然后，获取验证码图像并发送给超级鹰打码平台；最后，转化识别结果并使用Selenium点击登录即可。
+> 首先，获取验证码位置并获取网页截图；然后，裁剪获取验证码图像并以字节流的格式发送给超级鹰打码平台；最后，转化识别结果并使用Selenium点击登录。
 
 # Other
 &emsp; 代码中pass留空函数为预留功能：爬取简书文章信息。有兴趣可以继续完善。
