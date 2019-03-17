@@ -1,10 +1,10 @@
-## Selenium Cnki
+# Project Name
 &emsp; 使用Selenium注册并登录中国知网并识别知网的图形验证码。
 
-## Sort
+# Sort
 &emsp; **验证码识别** - 图形验证码
 
-## Demand
+# Demand
 **1. Selenium** - 建议使用低版本的Python-Selenium库，因为高版本在Chrome中不支持。
 ```
 pip3 install selenium==2.48.0
@@ -13,7 +13,7 @@ pip3 install selenium==2.48.0
 
 **3. Chaojiying_Python.rar** - download_addr：http://www.chaojiying.com/download/Chaojiying_Python.rar
 
-## Process analysis
+# Process analysis
 #### 1.验证码类型
 > 知网注册页的验证码类型属于常见四位英文和数字组成的验证码。可以在超级鹰的 [验证码类型于价格表](http://www.chaojiying.com/price.html#table-item5) 页面参考。
 
@@ -47,8 +47,8 @@ def handle_code(image):
     return result_1, result_2
 ```
 
-## Other
+# Other
 &emsp; 代码可继续扩展，例如：登录后知网文献的爬取，并做数据可视化分析等。
 
-## Demo
+# Demo
 ![程序运行的GIF动态演示图](https://github.com/Northxw/Python3_WebSpider/blob/master/08-Selenium_Cnki/demo/demo.gif)
