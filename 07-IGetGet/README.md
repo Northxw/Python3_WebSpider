@@ -30,7 +30,7 @@ pip3 install mitmproxy
 #### 3.mitmproxy证书安装的Bug
 > PC端证书安装请自行谷歌。安装结束后可在用户目录的.mitmproxy目录下找到CA证书，如图：
 
-
+![mitmproxy_ca](https://github.com/Northxw/Python3_WebSpider/blob/master/07-IGetGet/utils/mitmproxy%E8%AF%81%E4%B9%A6.png)
 
 > 手机安装此证书不要局限于"mitmproxy-ca-cert.pem", 可能无法识别为CA证书并安装。可以尝试将上图中1-5中的任何一个传输到手机安装测试，哪个能用即用哪个。
 
