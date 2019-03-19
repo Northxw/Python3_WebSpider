@@ -11,7 +11,7 @@
 
 **3.Android SDK** - [Download SDK](https://developer.android.com/studio/index.html?hl=zh-cn)
 
-**4. Selenium** - 建议使用低版本的Python Selenium库，Chrome的高版本可能会报错。例如：
+**4. Selenium** - 建议使用低版本的Python Selenium库，在Chrome高版本可能会报错。例如：
 ```
 pip3 install selenium==2.48.0
 ```
@@ -32,7 +32,7 @@ pip3 install pymongo
 #### 2. Android SDK的安装与配置
 > 打开Android Studio, 选择"**Configure->SDK Manager->Apperance&Behavior->System Settings->Android SDK**", 选择对应安卓机版本的SDK，如图：
 
-
+![sdk](https://github.com/Northxw/Python3_WebSpider/blob/master/05-Moments/plates/SDK.png)
 
 > 此外，还需要将SDK所在路径添加到系统环境变量中，否则报错。
 
@@ -47,13 +47,16 @@ adb devices -l
 > 测试之前，确保打开 **开发者选项、USB调试**。开发者模式确保调试程序在手机安装辅助软件：**Unlock, Appium Settings**；USB调试主要是利用Appium内置驱动打开APP。此外，要保持屏幕长亮。
 
 #### 5. 节点ID或XPATH值获取
-> 安卓微信节点获取，相对比较容易获取，比如获取"登录"ID值，启动Session后只需要点击左侧屏幕的登录按钮，中间就会自动定位到所在节点，最右侧还会显示该节点的所有属性。如图：
+> 安卓微信节点获取，相对比较容易获取，比如获取"登录"ID值，启动Session后只需点击屏幕左侧安卓屏的登录按钮，中间就会自动定位到所在节点，最右侧还会显示该节点的所有属性。如图：
 
+![element](https://github.com/Northxw/Python3_WebSpider/blob/master/05-Moments/plates/login.png)
 
 > 对于文本输入框，只需要点击最右侧的"send text"即可。
 
 #### 6. "是否匹配通讯录"
 > 这里选择"否", 理由：重新登录进入微信后会自动加载本地数据，耗时较长，如果匹配通讯录好友，增加耗时，可能在TIMEOUT时间内获取不到节点，导致程序终止。如图：
+
+![yes_no]()
 
 #### 7. 朋友圈信息获取思路
 > 获取当前显示的朋友圈每条状态对应的区块元素，遍历每个区块元素，再获取内部显示的用户名、正文、发布时间，代码如下：
@@ -110,3 +113,4 @@ class Processor():
 &emsp; (⊙_⊙)?
 
 # Result
+![mongodb_moments](https://github.com/Northxw/Python3_WebSpider/blob/master/05-Moments/plates/moment_db.png)
