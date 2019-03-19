@@ -2,7 +2,7 @@
 &emsp; Appium爬取微信朋友圈。
 
 # Sort
-&emsp; **自动化爬取App数据** - 基移动端的自动化测试工具Appium的自动化爬取程序。
+&emsp; **自动化爬取App数据** - 基于移动端的自动化测试工具Appium的自动化爬取程序。
 
 # Install
 **1.JDK** - [Download JDK](https://www.oracle.com/technetwork/java/javase/downloads/jdk11-downloads-5066655.html)，Appium要求用户必须配置JAVA环境, 否则启动Seesion报错。
@@ -41,6 +41,9 @@ pip3 install pymongo
 ```
 adb devices -l
 ```
+
+![devicename](https://github.com/Northxw/Python3_WebSpider/blob/master/05-Moments/plates/device_name.png)
+
 > 后两个参数请移步：[获取appPackage和appActivity](https://blog.csdn.net/mtbaby/article/details/78676477)
 
 #### 4. 开启安卓的" 开发者选项、USB调试 "
@@ -54,9 +57,9 @@ adb devices -l
 > 对于文本输入框，只需要点击最右侧的"send text"即可。
 
 #### 6. "是否匹配通讯录"
-> 这里选择"否", 理由：重新登录进入微信后会自动加载本地数据，耗时较长，如果匹配通讯录好友，增加耗时，可能在TIMEOUT时间内获取不到节点，导致程序终止。如图：
+> 这里选择"否", 理由：重新登录进入微信后会自动加载本地数据，耗时较长，如果匹配通讯录好友，增加耗时，可能在TIMEOUT时间内获取不到节点，导致程序终止。我这里选择了"是", 如图：
 
-![yes_no]()
+![no](https://github.com/Northxw/Python3_WebSpider/blob/master/05-Moments/plates/yes-no.png)
 
 #### 7. 朋友圈信息获取思路
 > 获取当前显示的朋友圈每条状态对应的区块元素，遍历每个区块元素，再获取内部显示的用户名、正文、发布时间，代码如下：
