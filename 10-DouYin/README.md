@@ -11,10 +11,10 @@
 ![video_url](https://github.com/Northxw/Python3_WebSpider/blob/master/10-DouYin/plates/charles.png)
 
 #### 2. 手动上滑触发视频请求接口
-emsp; 自动化滑动刷新有尝试过，但是由于技术有限，不能实现抖音APP的登录，所以用Charles只能获取视频下载链接，而不能获取其他有效信息，比如视频的名称、作者名称、获赞数、转发量等。
+&emsp; 自动化滑动刷新有尝试过，但是由于技术有限，不能实现抖音APP的登录，所以用Charles只能获取视频下载链接，而不能获取其他有效信息，比如视频的名称、作者名称、获赞数、转发量等。
 
 #### 3. Python脚本获取视频信息
-emsp; 使用Python脚本拦截response爬取视频信息并下载视频，同时将视频信息存储至JSON。
+&emsp; 使用Python脚本拦截response爬取视频信息并下载视频，同时将视频信息存储至JSON。
 
 #### 4. 视频无水印
 &emsp; 如图：
