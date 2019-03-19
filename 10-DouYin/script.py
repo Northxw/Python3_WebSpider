@@ -1,5 +1,11 @@
 # -*- coding:utf-8 -*-
 
+"""
+Updated at 17:57 at March 19,2019
+@title: 爬取抖音App短视频
+@author: Northxw
+"""
+
 from mitmproxy import ctx
 import json
 import requests
@@ -11,10 +17,12 @@ def response(flow):
     抓取抖音标题、APP视频链接、作者、抖音ID、发布时间、获赞数、评论和转发数等信息, 并将结果保存为JSON格式.
     :return: None
     """
-    url = 'https://api.amemv.com/'   # 获取抖音短视频的URL接口
-    url_ = 'https://aweme.snssdk.com/'
-    if flow.request.url.startswith(url) or flow.request.url.startswith(url):
-        text = flow.response.text   # 获取响应
+    # 通过Charles获取的抖音视频信息的URL接口
+    url = 'https://api.amemv.com/'
+    if flow.request.url.startswith(url):
+        # 获取服务器返回的响应
+        text = flow.response.text
+        # 转化为Json格式
         dyjson = json.loads(text)
         info = ctx.log.info
 
@@ -46,7 +54,8 @@ def response(flow):
             short_id = aweme_list[i].get('author').get('short_id')
             # 发布时间
             create_time = aweme_list[i].get('create_time')
-            create_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(create_time))   # 格式化时间
+            # 格式化
+            create_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(create_time))
             # 获赞、评论、转发数
             digg_count = aweme_list[i].get('statistics').get('digg_count')
             comment_count = aweme_list[i].get('statistics').get('comment_count')
@@ -74,6 +83,8 @@ def response(flow):
                 'commments': comment_count,
                 'shares': share_count
             }
+
+            # 下载视频
             with open('./douyin.json', 'a', encoding='utf-8') as f:
                 f.write(json.dumps(data, indent=2, ensure_ascii=False))
                 f.write(', \n')
