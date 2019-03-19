@@ -2,7 +2,7 @@
 &emsp; Appium爬取微信朋友圈。
 
 # Sort
-&emsp; **自动化爬取App数据** - 基移动端的自动化测试工具Appium的自动化爬取程序。
+&emsp; **自动化爬取App数据** - 基于移动端的自动化测试工具Appium的自动化爬取程序。
 
 # Install
 **1.JDK** - [Download JDK](https://www.oracle.com/technetwork/java/javase/downloads/jdk11-downloads-5066655.html)，Appium要求用户必须配置JAVA环境, 否则启动Seesion报错。
