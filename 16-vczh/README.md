@@ -115,7 +115,7 @@ class ImagePipeline(ImagesPipeline):
         yield Request(item['avatar_url'])
 ```
 
-#### 7.爬虫状态报告
+## 7.爬虫状态报告
 &emsp; 由于未实现分布式，爬取时间较长，不可能守在屏幕前两个小时。所以实现了爬虫程序运行结束后，自动发送邮件报告爬虫状态（参考：[CSDN-Kosmoo](https://blog.csdn.net/zwq912318834/article/details/78014762?utm_source=blogxgwz5))。代码如下：
 ```
 import smtplib
@@ -172,7 +172,7 @@ class EmailSender(object):
 &emsp; 使用的发送邮箱是网易163邮箱。前提：你必须开启STMP服务，开启方法请自行搜索。爬虫状态报告邮件如图：
 ![email](https://github.com/Northxw/Python3_WebSpider/blob/master/16-vczh/vczh/utils/email.png)
 
-#### 8. 其他问题
+## 8. 其他问题
 &emsp; 尝试运行代码过程中出现任何Bug，欢迎提交issue，或者通过邮箱(**northxw@163.com**)直接与我联系。
 
 # Other
