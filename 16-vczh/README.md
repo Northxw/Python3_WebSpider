@@ -21,7 +21,7 @@ pip3 install pymysql
 
 ## 2. UAMiddleware
 &emsp; 本次获取的数据量较大，在优先爬取效率情况下，设置随机UA信息，防止反爬。代码如下：
-```
+```Python
 from fake_useragent import UserAgent
 
 class UAMiddleware(object):
@@ -34,7 +34,7 @@ class UAMiddleware(object):
 
 ## 3. ProxyMiddleware
 &emsp; 同理UA中间件，为防止反爬，设置代理( [阿布云](https://www.abuyun.com/) )。代码如下：
-```
+```Python
 import base64
 
 class ProxyMiddleware(object):
@@ -68,7 +68,7 @@ class ProxyMiddleware(object):
 
 ## 4. DownloadRetryMiddleware
 &emsp; 测试期间，发现图片的下载总量少于爬取总量，所以设置Retry中间件，在下载失败后，将图片的下载链接重新载入下载队列，最大程度保证数据的份额。代码继承RetryMiddleware, 仅作微小调动。如下：
-```
+```Python
 from scrapy.downloadermiddlewares.retry import RetryMiddleware
 from scrapy.utils.response import response_status_message
 
@@ -91,7 +91,7 @@ class DownloadRetryMiddleware(RetryMiddleware):
 
 ## 6. ImagePipeline
 &emsp; 图片下载管道，继承ImagesPipeline。修改了提取图片下载链接的方式，设置存储位置，代码如下：
-```
+```Python
 from scrapy import Request
 from scrapy.exceptions import DropItem
 from scrapy.pipelines.images import ImagesPipeline
@@ -117,7 +117,7 @@ class ImagePipeline(ImagesPipeline):
 
 ## 7.爬虫状态报告
 &emsp; 由于未实现分布式，爬取时间较长，不可能守在屏幕前两个小时。所以实现了爬虫程序运行结束后，自动发送邮件报告爬虫状态（参考：[CSDN-Kosmoo](https://blog.csdn.net/zwq912318834/article/details/78014762?utm_source=blogxgwz5))。代码如下：
-```
+```Python
 import smtplib
 from email.mime.text import MIMEText
 
