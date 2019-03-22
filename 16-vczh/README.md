@@ -2,10 +2,10 @@
 &emsp; 爬取知乎轮子哥(vczh)的粉丝和关注者信息。
 
 # Sort
-&emsp; **Scrapy** - Scrapy框架应用。
+&emsp; **Scrapy** - **Scrapy框架的应用**。
 
 # Install
-**1.Scrapy** - 需要提前安装依赖库(lxml, pyOpenSSL, Twisted, pyWin32)。
+**1.Scrapy** - 需提前安装依赖库( **lxml, pyOpenSSL, Twisted, pyWin32** )。
 ```
 pip3 install Scrapy
 ```
@@ -16,10 +16,10 @@ pip3 install pymysql
 ```
 
 # Process analysis
-#### 1. 粉丝数据量
+## 1. 粉丝数据量
 &emsp; 由于轮子哥的粉丝数量接近80万，所以仅爬取前10万的数据并下载用户头像。经测试，耗时2个小时左右。
 
-#### 2. UAMiddleware
+## 2. UAMiddleware
 &emsp; 本次获取的数据量较大，在优先爬取效率情况下，设置随机UA信息，防止反爬。代码如下：
 ```
 from fake_useragent import UserAgent
@@ -32,7 +32,7 @@ class UAMiddleware(object):
         request.headers['User-Agent'] = self.user_agent
 ```
 
-#### 3. ProxyMiddleware
+## 3. ProxyMiddleware
 &emsp; 同理UA中间件，为防止反爬，设置代理( [阿布云](https://www.abuyun.com/) )。代码如下：
 ```
 import base64
@@ -66,7 +66,7 @@ class ProxyMiddleware(object):
         pass
 ```
 
-#### 4. DownloadRetryMiddleware
+## 4. DownloadRetryMiddleware
 &emsp; 测试期间，发现图片的下载总量少于爬取总量，所以设置Retry中间件，在下载失败后，将图片的下载链接重新载入下载队列，最大程度保证数据的份额。代码继承RetryMiddleware, 仅作微小调动。如下：
 ```
 from scrapy.downloadermiddlewares.retry import RetryMiddleware
@@ -85,13 +85,17 @@ class DownloadRetryMiddleware(RetryMiddleware):
             return self._retry(request, exception, spider)
 ```
 
-#### 5.MysqlPipeline
-&emsp; 数据库管道，主要是数据的清洗校验等。将爬取的粉丝信息全部存储至Mysql(MongoDB)。
+## 5.MysqlPipeline
+&emsp; 数据库管道，主要是数据的清洗校验等。将爬取的粉丝信息全部存储至Mysql(代码请查看: [pipeline.py](https://github.com/Northxw/Python3_WebSpider/blob/master/16-vczh/vczh/pipelines.py))。
 
 
-#### 6. ImagePipeline
+## 6. ImagePipeline
 &emsp; 图片下载管道，继承ImagesPipeline。修改了提取图片下载链接的方式，设置存储位置，代码如下：
 ```
+from scrapy import Request
+from scrapy.exceptions import DropItem
+from scrapy.pipelines.images import ImagesPipeline
+
 class ImagePipeline(ImagesPipeline):
     def file_path(self, request, response=None, info=None):
         url = request.url
@@ -112,8 +116,11 @@ class ImagePipeline(ImagesPipeline):
 ```
 
 #### 7.爬虫状态报告
-&emsp; 由于未实现分布式，爬取时间较长，不可能守在屏幕前两个小时，所以实现了爬虫程序运行结束后，自动发送邮件报告爬虫状态。代码如下：
+&emsp; 由于未实现分布式，爬取时间较长，不可能守在屏幕前两个小时。所以实现了爬虫程序运行结束后，自动发送邮件报告爬虫状态（参考：[CSDN-Kosmoo](https://blog.csdn.net/zwq912318834/article/details/78014762?utm_source=blogxgwz5))。代码如下：
 ```
+import smtplib
+from email.mime.text import MIMEText
+
 class EmailSender(object):
     def __init__(self):
         # 发送方smtp服务器
@@ -162,7 +169,8 @@ class EmailSender(object):
             print("Failed to send, Exception: e={}".format(e))
 ```
 
-&emsp; 使用的发送邮箱是网易163邮箱。前提：你必须开启STMP服务，开启方法请自行搜索，很简单。爬虫状态报告邮件如图：
+&emsp; 使用的发送邮箱是网易163邮箱。前提：你必须开启STMP服务，开启方法请自行搜索。爬虫状态报告邮件如图：
+![email](https://github.com/Northxw/Python3_WebSpider/blob/master/16-vczh/vczh/utils/email.png)
 
 #### 8. 其他问题
 &emsp; 尝试运行代码过程中出现任何Bug，欢迎提交issue，或者通过邮箱(**northxw@163.com**)直接与我联系。
@@ -171,10 +179,10 @@ class EmailSender(object):
 &emsp; 代码不足之处没有实现断点续传。后期更新吧。
 
 # Demo
-&emsp; **Status Mail**
+&emsp; **Downlaod Avatar**
 
-![crawl_status]()
+![avatar](https://github.com/Northxw/Python3_WebSpider/blob/master/16-vczh/vczh/utils/followers.png)
 
 &emsp; **DB Screenshot**
 
-![db_shows]()
+![db](https://github.com/Northxw/Python3_WebSpider/blob/master/16-vczh/vczh/utils/db_follower.png)
