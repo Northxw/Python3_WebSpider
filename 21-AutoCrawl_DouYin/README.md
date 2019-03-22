@@ -9,7 +9,7 @@
 
 # Explain
 ### 1. 不登录抖音账号
-&emsp; 若选择登录抖音账号，第一个问题是无法自动化获取短信验证码，第二个问题是填写短信验证码后会出现滑动验证码，如图：
+&emsp; 若选择登录抖音账号，第一个问题是无法自动化获取短信验证码，第二个问题是填写短信验证码后会出现点触式图形验证码，如图：
 
 ![yanzhengma](https://github.com/Northxw/Python3_WebSpider/blob/master/21-AutoCrawl_DouYin/plates/%E5%9B%BE%E5%BD%A2%E7%82%B9%E8%A7%A6%E9%AA%8C%E8%AF%81%E7%A0%81.png)
 
@@ -19,7 +19,7 @@
 ![scroll_and_more](https://github.com/Northxw/Python3_WebSpider/blob/master/21-AutoCrawl_DouYin/plates/start.png)
 
 ### 3. 视频请求接口
-&emsp; 抖音视频的接口较多，有的包含较多广告，有的全是短视频，这里选择全部获取，构造共12个URL，代码如下：
+&emsp; 抖音视频的接口较多，有的包含较多广告，有的全是短视频，这里选择全部获取，构造共16个URL，代码如下：
 ```
 nums = [1,3,6,9]
     for num in nums:
