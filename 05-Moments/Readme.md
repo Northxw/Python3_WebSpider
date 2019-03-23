@@ -27,43 +27,43 @@ pip3 install pymongo
 
 # Explain
 #### 1. 爬取思路
-> 沿袭崔大的爬取思路：**模拟登录、抓取动态、保存数据**。
+&emsp; 沿袭崔大的爬取思路：**模拟登录、抓取动态、保存数据**。
 
 #### 2. Android SDK的安装与配置
-> 打开Android Studio, 选择"**Configure->SDK Manager->Apperance&Behavior->System Settings->Android SDK**", 选择对应安卓机版本的SDK，如图：
+&emsp; 打开Android Studio, 选择"**Configure->SDK Manager->Apperance&Behavior->System Settings->Android SDK**", 选择对应安卓机版本的SDK，如图：
 
 ![sdk](https://github.com/Northxw/Python3_WebSpider/blob/master/05-Moments/plates/SDK.png)
 
-> 此外，还需要将SDK所在路径添加到系统环境变量中，否则报错。
+&emsp; 此外，还需要将SDK所在路径添加到系统环境变量中，否则报错。
 
 #### 3. Desired Capabilites 参数
-> 分别是：platfornName, deviceName, appPackage, appActivity。前两个可通过如下命令获取, 前提是连接手机、打开USB调试：
+&emsp; 分别是：platfornName, deviceName, appPackage, appActivity。前两个可通过如下命令获取, 前提是连接手机、打开USB调试：
 ```
 adb devices -l
 ```
 
 ![devicename](https://github.com/Northxw/Python3_WebSpider/blob/master/05-Moments/plates/device_name.png)
 
-> 后两个参数请移步：[获取appPackage和appActivity](https://blog.csdn.net/mtbaby/article/details/78676477)
+&emsp; 后两个参数请移步：[获取appPackage和appActivity](https://blog.csdn.net/mtbaby/article/details/78676477)
 
 #### 4. 开启安卓的" 开发者选项、USB调试 "
-> 测试之前，确保打开 **开发者选项、USB调试**。开发者模式确保调试程序在手机安装辅助软件：**Unlock, Appium Settings**；USB调试主要是利用Appium内置驱动打开APP。此外，要保持屏幕长亮。
+&emsp; 测试之前，确保打开 **开发者选项、USB调试**。开发者模式确保调试程序在手机安装辅助软件：**Unlock, Appium Settings**；USB调试主要是利用Appium内置驱动打开APP。此外，要保持屏幕长亮。
 
 #### 5. 节点ID或XPATH值获取
-> 安卓微信节点获取，相对比较容易获取，比如获取"登录"ID值，启动Session后只需点击屏幕左侧安卓屏的登录按钮，中间就会自动定位到所在节点，最右侧还会显示该节点的所有属性。如图：
+&emsp; 安卓微信节点获取，相对比较容易获取，比如获取"登录"ID值，启动Session后只需点击屏幕左侧安卓屏的登录按钮，中间就会自动定位到所在节点，最右侧还会显示该节点的所有属性。如图：
 
 ![element](https://github.com/Northxw/Python3_WebSpider/blob/master/05-Moments/plates/login.png)
 
-> 对于文本输入框，只需要点击最右侧的"send text"即可。
+&emsp; 对于文本输入框，只需要点击最右侧的"send text"即可。
 
 #### 6. "是否匹配通讯录"
-> 这里选择"否", 理由：重新登录进入微信后会自动加载本地数据，耗时较长，如果匹配通讯录好友，增加耗时，可能在TIMEOUT时间内获取不到节点，导致程序终止。我这里选择了"是", 如图：
+&emsp; 这里选择"否", 理由：重新登录进入微信后会自动加载本地数据，耗时较长，如果匹配通讯录好友，增加耗时，可能在TIMEOUT时间内获取不到节点，导致程序终止。我这里选择了"是", 如图：
 
 ![no](https://github.com/Northxw/Python3_WebSpider/blob/master/05-Moments/plates/yes-no.png)
 
 #### 7. 朋友圈信息获取思路
-> 获取当前显示的朋友圈每条状态对应的区块元素，遍历每个区块元素，再获取内部显示的用户名、正文、发布时间，代码如下：
-```
+&emsp; 获取当前显示的朋友圈每条状态对应的区块元素，遍历每个区块元素，再获取内部显示的用户名、正文、发布时间，代码如下：
+```Python
 # items存储当前页面所有发布的朋友圈信息
 items = self.wait.until(
     EC.presence_of_all_elements_located(
@@ -89,8 +89,8 @@ for item in items:
 ```
 
 #### 8.日期处理
-> 日期处理依旧采用崔大的实现方式，代码如下：
-```
+&emsp;日期处理依旧采用崔大的实现方式，代码如下：
+```Python
 class Processor():
     def date(self, datetime):
         """
