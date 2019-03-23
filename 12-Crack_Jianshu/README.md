@@ -14,21 +14,21 @@ pip3 install selenium==2.48.0
 **3. Chaojiying_Python.rar** - download_addr：http://www.chaojiying.com/download/Chaojiying_Python.rar
 
 # Process analysis
-**1.不要频繁运行程序模拟登录**
-> 频繁模拟登录并识别验证码后，会出现验证码却来越模糊到难以识别，并且识别后点击"确认"按钮无法登录（或者说登录按键失效的）的情况。如图所示的位置失效：
+**1.不要频繁运行程序模拟登录**     
+&emsp; 频繁模拟登录并识别验证码后，会出现验证码却来越模糊到难以识别，并且识别后点击"确认"按钮无法登录（或者说登录按键失效的）的情况。如图所示的位置失效：
 
 ![sure_button](https://github.com/Northxw/Python3_WebSpider/blob/master/12-Crack_Jianshu/require/code_demo.png)
 
-**2.超级鹰**
-> [超级鹰打码平台](http://www.chaojiying.com/) 打码效率可以达到90%以上。在平台上注册绑定微信后会赠送1000积分，基本够用了。如图是我的积分情况：
+**2.超级鹰**     
+&emsp; [超级鹰打码平台](http://www.chaojiying.com/) 打码效率可以达到90%以上。在平台上注册绑定微信后会赠送1000积分，基本够用了。如图是我的积分情况：
 
 ![jifen](https://github.com/Northxw/Python3_WebSpider/blob/master/12-Crack_Jianshu/require/chaojiying.png)
 
-**3.超级鹰软件ID和验证码类型**
-> 软件ID相当于工作牌(或护照)，每次打码都必须携带；验证码类型需要你去 [平台](http://www.chaojiying.com/price.html#table-item5) 确认。例如该项目的验证码类型属于**9004	坐标多选,返回1~4个坐标**。
+**3.超级鹰软件ID和验证码类型**      
+&emsp; 软件ID相当于工作牌(或护照)，每次打码都必须携带；验证码类型需要你去 [平台](http://www.chaojiying.com/price.html#table-item5) 确认。例如该项目的验证码类型属于**9004	坐标多选,返回1~4个坐标**。
 
-**4.识别思路(简要)**
-> 首先，获取验证码位置并获取网页截图；然后，裁剪获取验证码图像并以字节流的格式发送给超级鹰打码平台；最后，转化识别结果并使用Selenium点击登录。
+**4.识别思路(简要)**      
+&emsp; 首先，获取验证码位置并获取网页截图；然后，裁剪获取验证码图像并以字节流的格式发送给超级鹰打码平台；最后，转化识别结果并使用Selenium点击登录。
 
 # Other
 &emsp; 代码中pass留空函数为预留功能：爬取简书文章信息。有兴趣可以继续完善。
