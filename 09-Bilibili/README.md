@@ -13,20 +13,23 @@ pip3 install selenium==2.48.0
 
 # Process analysis
 **1.验证码节点**
-> B站验证码只要鼠标悬浮滑块就会出现, 当验证码出现后定位节点即可。过程比较繁琐，直接贴出来：
+
+&emsp; B站验证码只要鼠标悬浮滑块就会出现, 当验证码出现后定位节点即可。过程比较繁琐，直接贴出来：
 ```
 img = self.wait.until(EC.presence_of_element_located((By.CLASS_NAME, 'gt_box')))
 ```
 
 **2.获取坐标值**
-> 获取的坐标值分别是左上角和右下角, 而前端页面的坐标原点在屏幕左上角并且元素节点一般都是相对位置，所以坐标值部分需要好好理解。比如B站登录界面包含"登录"的div节点其父节点是id=" login-app"的div,如图：
+
+&emsp; 获取的坐标值分别是左上角和右下角, 而前端页面的坐标原点在屏幕左上角并且元素节点一般都是相对位置，所以坐标值部分需要好好理解。比如B站登录界面包含"登录"的div节点其父节点是id=" login-app"的div,如图：
 
 ![location_demo](https://github.com/Northxw/Python3_WebSpider/blob/master/09-Bilibili/require/demo_location.png)
 
 **3.缺口偏移量**
-> 通过遍历图片的每个坐标点获取两张图片对应像素点的RGB，如果RGB差距在阈值范围内就认为相同，继续比对下一像素点。如果超过阈值，则说明像素点不同，当前位置
+
+&emsp; 通过遍历图片的每个坐标点获取两张图片对应像素点的RGB，如果RGB差距在阈值范围内就认为相同，继续比对下一像素点。如果超过阈值，则说明像素点不同，当前位置
 即为缺口位置。
-```
+```Python
     def get_gap(self, image1, image2):
         """
         获取缺口偏移量
@@ -64,13 +67,15 @@ img = self.wait.until(EC.presence_of_element_located((By.CLASS_NAME, 'gt_box')))
             return False
 ```
 **4.模拟拖动**
-> 模拟拖动滑块继承崔大模拟人类行为轨迹的"前段匀加速后段匀减速"。
+
+&emsp; 模拟拖动滑块继承崔大模拟人类行为轨迹的"前段匀加速后段匀减速"。
 
 **5.点按滑块呼出验证码**
-> 点按滑块后, 两到三秒后验证码会自动隐藏, 所以不要添加延时，直接获取。
+
+&emsp; 点按滑块后, 两到三秒后验证码会自动隐藏, 所以不要添加延时，直接获取。
 
 # Other
-&emsp; 代码已更新, 正常情况下的破解率应该在50%以上, 主要看服务器怎么判定边界(像素差)。
+&emsp; 代码已更新, 正常情况下的破解率应该在50%以上, 主要看服务器判定边界的方式(可能像素差)。
 
 # Demo
 ![demo](https://github.com/Northxw/Python3_WebSpider/blob/master/09-Bilibili/require/demo.gif)
