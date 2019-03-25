@@ -14,12 +14,12 @@ pip3 install selenium==2.48.0
 **3. Chaojiying_Python.rar** - download_addr：http://www.chaojiying.com/download/Chaojiying_Python.rar
 
 # Process analysis
-#### 1.验证码类型
-> 知网注册页的验证码类型属于常见四位英文和数字组成的验证码。可以在超级鹰的 [验证码类型于价格表](http://www.chaojiying.com/price.html#table-item5) 页面参考。
+#### 1.验证码类型     
+&emsp; 知网注册页的验证码类型属于常见四位英文和数字组成的验证码。可以在超级鹰的 [验证码类型于价格表](http://www.chaojiying.com/price.html#table-item5) 页面参考。
 
-#### 2.Python识别库 - tesserocr、pytesseract
-> 这两个第三方库识别精度均较差, 字体略微差异可能就不是正常结果。所以选择超级鹰识别，识别前可做灰度、二值化处理（我这里做了注释选择不用，感觉平台打码精度挺高的），代码如下：
-```
+#### 2.Python识别库 - tesserocr、pytesseract      
+&emsp; 这两个三方库识别精度均较差, 字体略微差异可能就不是正常结果。所以选择超级鹰识别，识别前可做灰度、二值化处理（我这里做了注释选择不用，感觉平台打码精度挺高的），代码如下：
+```Python
 def handle_code(image):
     """
     处理验证码
