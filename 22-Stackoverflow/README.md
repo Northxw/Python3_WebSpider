@@ -6,13 +6,13 @@
 
 # Explain
 ## 1. 设置 "ROBOTSTXT_OBEY = True"
-&emsp; 如果你没有某墙软件，建议遵循爬虫协议，否则可能会被强制切断请求。在此基础上，设置 **DOWNLOAD_DELAY** 爬取时间间隔, 访问不要过于频繁。
+&emsp; 如果你没有某墙软件，建议遵循爬虫协议，否则会被强制切断请求。在此基础上，设置 **DOWNLOAD_DELAY** 爬取时间间隔, 访问不要过于频繁。
 
 ## 2. 建议设置"佛跳墙"
-&emsp; 经测，设置代理(某墙)后，可以在不设爬取时延的情况下，更快更高效的获取数据。如果直接用的客户端软件，在requests长时间没有响应后切换节点便可继续获取数据。
+&emsp; 经测，设置某墙后，可以在不设爬取时延的状态下，更快更高效的获取数据。如果某强是客户端软件，在 requests 超过TIMEOUT时切换节点可继续获取数据。
 
 ## 3. UAMiddleware、ProxyMiddleware
-&emsp; 此外，可以添加随机UA中间件以及代理中间件(由于本机有佛跳墙的客户端软件，所以没有开启代理中间件)。
+&emsp; 此外，添加随机UA中间件以及代理中间件(由于本机有佛跳墙的客户端软件，所以没有开启代理中间件)。
 ```Python
 from fake_useragent import UserAgent
 
@@ -30,8 +30,7 @@ class UAMiddleware(object):
 - 爬取问题详情页的标题、投票数、正文、标签等信息
 - 管道清洗后存入MonogoDB
 
-&emsp; 注意：Reqeust过程产生的异常，由error_back()函数接收并在控制台打印错误信息；爬取问题详情页由于部分问题没有code，所以返回None。数据库
-管道如下：
+&emsp; 注意：**Reqeust()** 过程产生的异常，由error_back()函数接收并在控制台打印错误信息；爬取问题详情页由于部分问题没有code，所以返回None。数据库管道如下：
 ```Python
 import pymongo
 
@@ -64,4 +63,4 @@ class MongoPipeline(object):
 
 # Result
 
-![db](https://github.com/Northxw/Python3_WebSpider/tree/master/22-Stackoverflow/stackoverflow/utils/db.png)
+![db](https://github.com/Northxw/Python3_WebSpider/blob/master/22-Stackoverflow/stackoverflow/utils/db.png)
