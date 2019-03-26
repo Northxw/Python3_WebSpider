@@ -1,5 +1,5 @@
 # Spider Stackoverflow
-&emsp; 爬取 **Stackoverflow** 前1000的问题。
+&emsp; 爬取 **Stackoverflow** 前1000个问题的相关信息。
 
 # Sort
 &emsp; **Scrapy** - 爬取外网数据。
@@ -12,7 +12,7 @@
 &emsp; 经测，设置代理(某墙)后，可以在不设爬取时延的情况下，更快更高效的获取数据。如果直接用的客户端软件，在requests长时间没有响应后切换节点便可继续获取数据。
 
 ## 3. UAMiddleware、ProxyMiddleware
-&emsp; 在前两点的基础上，添加随机UA中间件以及代理中间件(由于本机有佛跳墙的客户端软件，所以没有开启代理中间件)。
+&emsp; 此外，可以添加随机UA中间件以及代理中间件(由于本机有佛跳墙的客户端软件，所以没有开启代理中间件)。
 ```Python
 from fake_useragent import UserAgent
 
@@ -28,9 +28,9 @@ class UAMiddleware(object):
 - **start_requests()** 初始化前100页链接
 - 爬取每页问题的详情页链接
 - 爬取问题详情页的标题、投票数、正文、标签等信息
-- 管道清洗校验后存入MonogoDB
+- 管道清洗后存入MonogoDB
 
-&emsp; 注意：Reqeust过程产生的所有异常，都由error_back()函数接收并打印在控制台打印错误信息；爬取问题详情页由于部分问题没有code，所以返回None。数据库
+&emsp; 注意：Reqeust过程产生的异常，由error_back()函数接收并在控制台打印错误信息；爬取问题详情页由于部分问题没有code，所以返回None。数据库
 管道如下：
 ```Python
 import pymongo
