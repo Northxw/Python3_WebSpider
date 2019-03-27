@@ -121,7 +121,7 @@ class ImagePipeline(ImagesPipeline):
 ## 7. LOG日志
 &emsp; 一般情况下，我们会调用scrapy内置logger打印日志到控制台，可是你真的能找到log吗？      
 
-![huaji]()
+![huaji](https://github.com/Northxw/Python3_WebSpider/blob/master/16-vczh/vczh/utils/huaji.png)
 
 &emsp; 你可能不知道Python的logging模块提供了丰富的方法让我们打印log。接下来就将错误信息打印到log文件吧。但前提是你必须在settings.py中做一些设置。
 ```Python
@@ -130,7 +130,7 @@ LOG_LEVEL = 'WARNING'
 ```
 &emsp; **LOG_FILE** 是日志名称，在文件名中加入当前时间可以保证每次生成的log日志不重叠。**LOG_LEVEL** 是错误级别，这里设置为"WARNING", 方便查看日志信息。更多的用法可以查看官方文档。     
 
-![log]()
+![log](https://github.com/Northxw/Python3_WebSpider/blob/master/16-vczh/vczh/utils/log.png)
 
 
 ## 8.爬虫状态报告
