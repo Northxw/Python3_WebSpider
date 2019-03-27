@@ -1,8 +1,8 @@
-# Project Name
+# Spider Vczh
 &emsp; 爬取知乎轮子哥(vczh)的粉丝和关注者信息。
 
 # Sort
-&emsp; **Scrapy** - **Scrapy框架的应用**。
+&emsp; **Scrapy** - **使用Scrapy的功能模块**。
 
 # Install
 **1.Scrapy** - 需提前安装依赖库( **lxml, pyOpenSSL, Twisted, pyWin32** )。
@@ -43,6 +43,7 @@ class ProxyMiddleware(object):
         self.proxy_user = proxy_user
         self.proxy_pass = proxy_pass
         self.proxy_auth = "Basic " + base64.urlsafe_b64encode(bytes((self.proxy_user + ":" + self.proxy_pass), "ascii")).decode("utf8")
+        self.logger = logging.getLogger(__name__)
 
     @classmethod
     def from_crawler(cls, crawler):
@@ -57,9 +58,10 @@ class ProxyMiddleware(object):
         request.headers["Proxy-Authorization"] = self.proxy_auth
 
     def process_response(self, request, response, spider):
-        # 统计状态码正常的请求总数量
-        if response.status not in [500, 502, 503, 504, 522, 524, 408]:
-            COUNT_SUCCESS_REQUEST['Request_Success'] = COUNT_SUCCESS_REQUEST['Request_Success'] + 1
+        try:
+            spider.crawler.stats.inc_value('normal_response')
+        except Exception as e:
+            self.logger.error('Response Error: {}'.format(e.args))
         return response
 
     def process_exception(self, request, exception, spider):
@@ -97,6 +99,7 @@ from scrapy.exceptions import DropItem
 from scrapy.pipelines.images import ImagesPipeline
 
 class ImagePipeline(ImagesPipeline):
+
     def file_path(self, request, response=None, info=None):
         url = request.url
         file_name = url.split('/')[-1]
@@ -107,72 +110,81 @@ class ImagePipeline(ImagesPipeline):
         if not image_paths:
             raise DropItem('Image Downloaded Failed')
         else:
-            # 统计下载成功的图片总数量
-            RESPONSE_STATUS['Download_Success'] = RESPONSE_STATUS['Download_Success'] + 1
-        return item
+            COUNT_IMAGES_NUMS['IMAGES_NUMS'] += 1
+            return item
 
     def get_media_requests(self, item, info):
         yield Request(item['avatar_url'])
 ```
 
-## 7.爬虫状态报告
-&emsp; 由于未实现分布式，爬取时间较长，不可能守在屏幕前两个小时。所以实现了爬虫程序运行结束后，自动发送邮件报告爬虫状态（参考：[CSDN-Kosmoo](https://blog.csdn.net/zwq912318834/article/details/78014762?utm_source=blogxgwz5))。代码如下：
+
+## 7. LOG日志
+&emsp; 一般情况下，我们会调用scrapy内置logger打印日志到控制台，可是你真的能找到log吗？      
+
+![huaji]()
+
+&emsp; 你可能不知道Python的logging模块提供了丰富的方法让我们打印log。接下来就将错误信息打印到log文件吧。但前提是你必须在settings.py中做一些设置。
 ```Python
-import smtplib
-from email.mime.text import MIMEText
+LOG_FILE = './logs/{}.log'.format(str(time.strftime("%Y-%m-%d %H_%M_%S")))
+LOG_LEVEL = 'WARNING'
+```
+&emsp; **LOG_FILE** 是日志名称，在文件名中加入当前时间可以保证每次生成的log日志不重叠。**LOG_LEVEL** 是错误级别，这里设置为"WARNING", 方便查看日志信息。更多的用法可以查看官方文档。     
 
-class EmailSender(object):
-    def __init__(self):
-        # 发送方smtp服务器
-        self.smtp_host = 'smtp.163.com'
-        # 发送方邮箱(同于登录smtp服务器)
-        self.smtp_user = 'northxw@163.com'
-        # 授权码
-        self.smtp_authcode = 'XiYou0513'
-        # smtp服务器默认端口465
-        self.smtp_port = 465
-        # 发送方邮箱
-        self.sender = 'northxw@163.com'
+![log]()
 
-    def sendEmail(self, recipient_list, email_subject, body):
-        """
-        发送邮件
-        :param recipient_list: 收件人列表
-        :param email_subject: 邮件主题
-        :param body: 邮件内容
-        :return: None
-        """
-        # 邮件内容、格式、编码
-        message = MIMEText(_text=body, _subtype='plain', _charset='utf-8')
-        # 发件人
-        message['From'] = self.sender
-        # 收件人
-        message['To'] = ', '.join(recipient_list)
-        # 主题
-        message['Subject'] = email_subject
-        try:
-            # 实例化SMTP_SSL对象
-            smtpSSLClient = smtplib.SMTP_SSL(self.smtp_host,self.smtp_port)
-            # 登录
-            loginResult = smtpSSLClient.login(self.smtp_user, self.smtp_authcode)
-            # loginRes = (235, b'Authentication successful')
-            print("Login Result：LoginRes = {}".format(loginResult))
 
-            if loginResult and loginResult[0] == 235:
-                print("Successful login, Code = {}".format(loginResult[0]))
-                smtpSSLClient.sendmail(self.sender, recipient_list, message.as_string())
-                print("Successful delivery. Message:{}".format(message.as_string()))
-            else:
-                print("Login failed, Code = {}".format(str(loginResult[0])))
-
-        except Exception as e:
-            print("Failed to send, Exception: e={}".format(e))
+## 8.爬虫状态报告
+&emsp; 由于未实现分布式，爬取时间较长，不可能守在屏幕前两个小时。还好Scrapy内置了邮件模块，需要在settings.py中做一些参数设置，就可以使用。如下：
+```Python
+# 邮件发送者
+MAIL_FROM = 'northxw@163.com'
+# 邮件服务器
+MAIL_HOST = 'smtp.163.com'
+# 端口
+MAIL_PORT = 25
+# 发送者
+MAIL_USER = 'northxw@163.com'
+# 授权码(需要在邮箱开启SMTP服务并生成授权码)
+MAIL_PASS = 'authcode'
+```
+&emsp; 接下来在Spider中重写 **closed()** ，爬虫程序结束后，便会自动发送邮件到你指定的邮箱。
+```Python
+def closed(self, reason):
+    # 爬虫完成时间
+    fnished = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
+    # 创建邮件发送对象
+    mail = MailSender.from_settings(self.settings)
+    # 邮件内容
+    body = "爬虫名称: {}\n\n 开始时间: {}\n\n 请求成功总量：{}\n 图片下载总量：{}\n 数据库存储总量：{}\n\n 结束时间  : {}\n".format(
+        '知乎轮子哥粉丝爬虫',
+        str(self.start),
+        str(self.crawler.stats.get_value("normal_response")),
+        str(COUNT_IMAGES_NUMS['IMAGES_NUMS']),
+        str(self.crawler.stats.get_value("success_insertdb")),
+        str(str(fnished)))
+    # 发送邮件
+    mail.send(to=self.settings.get('RECEIVE_LIST'), subject=self.settings.get('SUBJECT'), body=body)
 ```
 
 &emsp; 使用的发送邮箱是网易163邮箱。前提：你必须开启STMP服务，开启方法请自行搜索。爬虫状态报告邮件如图：
+
 ![email](https://github.com/Northxw/Python3_WebSpider/blob/master/16-vczh/vczh/utils/email.png)
 
-## 8. 其他问题
+## 9. Crawl API
+&emsp; Scrapy提供了方便的收集数据的机制。数据以key/value方式存储，值大多是计数值。 该机制叫做数据收集器(Stats Collector)，可以通过 Crawler API 的属性 stats 来使用。[摘自百度]， 用法也超级简单。
+
+&emsp; 在Middleware、Pipeline中：
+```Python
+spider.crawler.stats.inc_value('normal_response')
+```
+
+&emsp; 在spider中：
+```Python
+self.crawler.stats.get_value("normal_response")
+```
+&emsp; **inc_value('normal_response')** 用来设置一个名称为normal_response的key，并对value自增1。**get_value("normal_response")** 获取key为normal_response的值。如此，我们可以很方便的计算数据库存储总量或请求成功总量。
+
+## 10. 其他问题
 &emsp; 尝试运行代码过程中出现任何Bug，欢迎提交issue，或者通过邮箱(**northxw@163.com**)直接与我联系。
 
 # Other
