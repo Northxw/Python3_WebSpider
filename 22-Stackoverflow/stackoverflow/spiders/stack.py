@@ -8,8 +8,20 @@ class StackSpider(scrapy.Spider):
     name = 'stack'
     allowed_domains = ['stackoverflow.com/']
     base_url = 'https://stackoverflow.com/questions?'
+    """
+     cookie = {
+        'prov':'a6f380fa-f8f0-7f6e-d854-38c41af03031',
+        '__qca':'P0-1677417766-1551849099087',
+        '_ga':'GA1.2.1470158957.1551849098',
+        'notice-ctt':'4%3B1551880057341',
+        '_gid':'GA1.2.890881421.1553787042',
+    }
+    """
 
     def start_requests(self):
+        """
+        构建请求链接
+        """
         for i in range(1, self.settings.get('MAX_PAGES') + 1):
             params = {'sort': 'votes', 'page': i}
             url = self.base_url + urlencode(params)
