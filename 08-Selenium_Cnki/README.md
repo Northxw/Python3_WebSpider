@@ -2,7 +2,7 @@
 &emsp; 使用Selenium注册并登录中国知网并识别知网的图形验证码。
 
 # Sort
-&emsp; **验证码识别** - 图形验证码
+&emsp; **识别验证码** - 常见四位英文数字混合验证码
 
 # Demand
 **1. Selenium** - 建议使用低版本的Python-Selenium库，因为高版本在Chrome中不支持。
