@@ -2,7 +2,9 @@
 &emsp; 模拟登录网易163邮箱并发送SOS邮件。
 
 # Sort
-&emsp; **iframe子网页处理** - 通过网易163邮箱的多iframe特点训练对子页面的处理。
+- **iframe子页面处理** - 通过网易163邮箱的多iframe特点训练对子页面的处理。
+
+- **模拟登陆** - Selenium
 
 # Install
 **1. Selenium** - 建议使用低版本的Python-Selenium库，因为高版本在Chrome中不支持。
