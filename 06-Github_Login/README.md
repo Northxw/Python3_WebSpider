@@ -2,7 +2,7 @@
 &emsp; 模拟登录Github并抓取登录后才可以访问的页面信息, 包括好友动态、个人信息等。   
 
 ## Sort
-&emsp; **模拟登陆** - 使用requests模拟登陆
+&emsp; **模拟登陆 - requests**
 
 ## Explain
 #### 1.清除Cookies
