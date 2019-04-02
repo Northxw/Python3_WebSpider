@@ -1,11 +1,14 @@
 ## Github Login
 &emsp; 模拟登录Github并抓取登录后才可以访问的页面信息, 包括好友动态、个人信息等。   
 
-## Crawl Analysis
-&emsp; 模拟登录的分析思路沿袭崔大的"Python3网络爬虫开发实战"。
+## Sort
+&emsp; **模拟登陆** - 使用requests模拟登陆
 
-## Tips
-+ 清除浏览器(Chrome)中Git站点的Cookies： [清除方法](https://blog.csdn.net/panbiao1999/article/details/77880649)
-+ 设置Cookies的过程发生在访问登录界面的过程（可在开发者工具中查看访问登录界面的数据请求信息）
-+ Form表单的authenticity_token参数可能隐藏在其他地方或者通过计算获得。对于Github而言，可在 [登录界面](https://github.com/login) 的网页源码中找到   
+## Explain
+#### 1.清除Cookies
+&emsp; 清除浏览器中待抓取网站的Cookies： [清除方法](https://blog.csdn.net/panbiao1999/article/details/77880649)
+#### 2.浏览器设置Coookies
+&emsp; 设置Cookies的过程发生在请求登录界面后(即：http://github.com/login)。
+#### 3.From表单的验证参数
+&emsp; Form表单的authenticity_token参数可在登陆界面的源码中获取。
 
