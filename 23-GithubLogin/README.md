@@ -1,5 +1,5 @@
 ## Github Login
-&emsp; 使用Scrapy的FormReqeust模拟登陆Github。
+&emsp; 使用 Scrapy 的 FormReqeust 模拟登陆 Github。
 
 ## Sort
 &emsp; **模拟登陆 - FormReqeust**
