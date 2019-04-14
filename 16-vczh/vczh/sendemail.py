@@ -10,7 +10,7 @@ class EmailSender(object):
         # 发送方邮箱(同于登录smtp服务器)
         self.smtp_user = 'northxw@163.com'
         # 授权码
-        self.smtp_authcode = 'XiYou0513'
+        self.smtp_authcode = '123456'
         # smtp服务器默认端口465
         self.smtp_port = 465
         # 发送方邮箱
