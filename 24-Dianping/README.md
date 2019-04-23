@@ -9,8 +9,8 @@
 ## 示例
 &emsp; 网页对应文字截图（https://www.dianping.com/xian/ch0）：
 
-![prt1]()
+![prt1](https://github.com/Northxw/Python3_WebSpider/blob/master/24-Dianping/utils/prtsc1.png)
 
 &emsp; 代码运行结果截图：
 
-![prt2]()
+![prt5](https://github.com/Northxw/Python3_WebSpider/blob/master/24-Dianping/utils/prtsc5.png)
