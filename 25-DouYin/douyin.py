@@ -18,11 +18,20 @@ def get_share_info(shareid):
     user_info = {}
     # 昵称
     user_info['nickname'] = re.findall('class="nickname">(.*?)<', r.text, re.S)[0]
+
     # 抖音ID
     id_length = len(html.xpath('//p[@class="shortid"]/i'))
     regex_id = 'class="shortid">' + '.*?<i\sclass="icon iconfont ">\s(.*?);\s</i>' * id_length
+    id_str = html.xpath('//p[@class="shortid"]/text()')[0].replace("抖音ID：",'').strip()
     id_code_nums = re.search(regex_id, r.text, re.S).groups()
-    user_info['id'] = ''.join([get_mapping_table(num) for num in id_code_nums])
+    user_info['id'] = id_str + ''.join([get_mapping_table(num) for num in id_code_nums])
+
+    # 类型
+    try:
+        user_info['job'] = html.xpath('//div[@class="verify-info"]/span/text()')[0].strip()
+    except:
+        user_info['job'] = ''
+
     # 签名
     user_info['signature'] = re.findall('class="signature">(.*?)<', r.text, re.S)[0]
     # 头像
@@ -52,17 +61,32 @@ def get_share_info(shareid):
     like_num = ''.join([get_mapping_table(num) for num in like_code_nums])
     user_info['liked_num'] = like_num if len(like_num) < 5 and not num_unit else str(eval(like_num) / 10) + num_unit
 
+
+    tab_nums = len(html.xpath("//div[@class='tab-wrap']/div"))
+    if tab_nums > 2:
+        # 作品
+        user_tab_num_length = len(html.xpath('//div[@class="tab-wrap"]/div[2]/span/i'))
+        num_unit = ''.join(re.findall(r'[a-zA-Z]', ''.join(html.xpath('//div[@class="tab-wrap"]/div[2]/span/text()'))))
+        regex_tabs = 'class="user-tab tab get-list" data-type="post">.*?<span class="num">' + '.*?<i\sclass="icon iconfont tab-num">\s(.*?);\s</i>' * user_tab_num_length
+        # 喜欢
+        like_tab_num_length = len(html.xpath('//div[@class="tab-wrap"]/div[3]/span/i'))
+        num_unit = ''.join(re.findall(r'[a-zA-Z]', ''.join(html.xpath('//div[@class="tab-wrap"]/div[3]/span/text()'))))
+    else:
+        # 作品
+        user_tab_num_length = len(html.xpath('//div[@class="tab-wrap"]/div[1]/span/i'))
+        num_unit = ''.join(re.findall(r'[a-zA-Z]', ''.join(html.xpath('//div[@class="tab-wrap"]/div[1]/span/text()'))))
+        regex_tabs = 'class="user-tab active tab get-list" data-type="post">.*?<span class="num">' + '.*?<i\sclass="icon iconfont tab-num">\s(.*?);\s</i>' * user_tab_num_length
+        # 喜欢
+        like_tab_num_length = len(html.xpath('//div[@class="tab-wrap"]/div[2]/span/i'))
+        num_unit = ''.join(re.findall(r'[a-zA-Z]', ''.join(html.xpath('//div[@class="tab-wrap"]/div[2]/span/text()'))))
+
+
     # 作品
-    user_tab_num_length = len(html.xpath('//div[@class="tab-wrap"]/div[1]/span/i'))
-    num_unit = ''.join(re.findall(r'[a-zA-Z]', ''.join(html.xpath('//div[@class="tab-wrap"]/div[1]/span/text()'))))
-    regex_tabs = 'class="user-tab active tab get-list" data-type="post">.*?<span class="num">' + '.*?<i\sclass="icon iconfont tab-num">\s(.*?);\s</i>' * user_tab_num_length
     tab_code_nums = re.search(regex_tabs, r.text, re.S).groups()
     tab_num = ''.join([get_mapping_table(num) for num in tab_code_nums])
     user_info['tab_num'] = tab_num if len(tab_num) < 5 and not num_unit else str(eval(tab_num) / 10) + num_unit
 
     # 喜欢
-    like_tab_num_length = len(html.xpath('//div[@class="tab-wrap"]/div[2]/span/i'))
-    num_unit = ''.join(re.findall(r'[a-zA-Z]', ''.join(html.xpath('//div[@class="tab-wrap"]/div[2]/span/text()'))))
     regex_like_tabs = 'class="like-tab tab get-list" data-type="like">.*?<span class="num">' + '.*?<i\sclass="icon iconfont tab-num">\s(.*?);\s</i>' * like_tab_num_length
     like_tab_code_nums = re.search(regex_like_tabs, r.text, re.S).groups()
     like_tab_num = ''.join([get_mapping_table(num) for num in like_tab_code_nums])
@@ -72,7 +96,7 @@ def get_share_info(shareid):
 
 
 if __name__ == '__main__':
-    # print(get_share_info('98524936524'))
+    # print(get_share_info('76055758243'))
     shareid_path = os.path.dirname(os.path.realpath(__file__)) + "\\shareid.txt"
     with open(shareid_path) as f:
         shareid_list = f.readlines()
